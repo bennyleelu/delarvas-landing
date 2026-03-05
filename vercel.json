@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/DELARVAS_Landing.html" }
+  ]
+}
