@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DELARVAS — Brand Mood Board</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1B2B4B;
+      --steel:  #2E6DA4;
+      --ice:    #48CAE4;
+      --light-ice: #90E0EF;
+      --charcoal: #2C2C2C;
+      --mid-gray: #6B7280;
+      --light-gray: #F4F6F8;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #EAEEF3;
+      color: var(--charcoal);
+    }
+
+    /* ── HEADER ── */
+    .brand-header {
+      background: var(--navy);
+      padding: 60px 48px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(72,202,228,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .brand-header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 30%;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(46,109,164,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .brand-header .label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ice);
+      margin-bottom: 20px;
+    }
+    .wordmark {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 72px;
+      font-weight: 900;
+      letter-spacing: 10px;
+      color: var(--white);
+      text-transform: uppercase;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .wordmark span {
+      color: var(--ice);
+    }
+    .sub-descriptor {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .tagline-badge {
+      margin-top: 32px;
+      display: inline-block;
+      border-left: 3px solid var(--ice);
+      padding-left: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .tagline-badge p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      font-style: italic;
+    }
+    .tagline-badge small {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 32px;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--ice);
+      display: inline-block;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    .card {
+      background: var(--white);
+      border-radius: 4px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(27,43,75,0.08);
+    }
+    .mb-section { margin-bottom: 48px; }
+
+    /* ── COLOR PALETTE ── */
+    .palette-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .swatch-wrap { flex: 1; min-width: 140px; }
+    .swatch {
+      height: 90px;
+      border-radius: 4px 4px 0 0;
+    }
+    .swatch-info {
+      background: var(--white);
+      padding: 12px 14px 16px;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 2px 8px rgba(27,43,75,0.1);
+    }
+    .swatch-info .name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+    .swatch-info .hex {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      color: var(--mid-gray);
+      margin-top: 2px;
+    }
+    .swatch-info .role {
+      font-size: 11px;
+      color: var(--mid-gray);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .type-demo { margin-bottom: 24px; }
+    .type-demo .sample-headline {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+    .type-demo .sample-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--steel);
+      margin-top: 6px;
+    }
+    .type-demo .sample-body {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      color: var(--charcoal);
+      line-height: 1.7;
+      margin-top: 10px;
+    }
+    .type-demo .sample-label {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-top: 10px;
+    }
+    .type-label-row {
+      display: flex; align-items: baseline; gap: 16px;
+      border-bottom: 1px solid #E5E9EF;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .type-label-row .tl-name {
+      font-size: 11px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      width: 90px;
+      flex-shrink: 0;
+    }
+    .type-label-row .tl-spec {
+      font-size: 11px;
+      color: var(--mid-gray);
+    }
+
+    /* ── BRAND VOICE ── */
+    .voice-card {
+      background: var(--white);
+      border-radius: 4px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(27,43,75,0.08);
+    }
+    .voice-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .voice-card p {
+      font-size: 13px;
+      color: var(--mid-gray);
+      line-height: 1.6;
+    }
+    .voice-card .icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+    .tag-navy  { background: var(--navy);  color: var(--white); }
+    .tag-steel { background: var(--steel); color: var(--white); }
+    .tag-ice   { background: var(--ice);   color: var(--navy); }
+    .tag-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+
+    /* ── SAMPLE USAGE ── */
+    .sample-card {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 4px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(27,43,75,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .sample-card::before {
+      content: '';
+      position: absolute; top: -30px; right: -30px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(72,202,228,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .sample-card .eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ice);
+      margin-bottom: 10px;
+    }
+    .sample-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .sample-card p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
+    }
+    .sample-btn {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border-radius: 2px;
+      text-decoration: none;
+    }
+    .btn-ice   { background: var(--ice); color: var(--navy); }
+    .btn-outline-white { border: 1.5px solid rgba(255,255,255,0.4); color: var(--white); margin-left: 10px; }
+
+    .sample-light {
+      background: var(--white);
+      border-radius: 4px;
+      padding: 32px;
+      box-shadow: 0 2px 12px rgba(27,43,75,0.08);
+    }
+    .sample-light .eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 10px;
+    }
+    .sample-light h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .sample-light p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--mid-gray);
+      margin-bottom: 20px;
+    }
+    .btn-navy { background: var(--navy); color: var(--white); }
+
+    /* ── TAGLINE VARIANTS ── */
+    .tl-variants { display: flex; flex-direction: column; gap: 12px; }
+    .tl-variant {
+      padding: 18px 22px;
+      border-radius: 4px;
+      border-left: 4px solid var(--ice);
+      background: var(--light-gray);
+    }
+    .tl-variant.primary { background: var(--navy); border-left-color: var(--ice); }
+    .tl-variant.primary p { color: var(--white); font-weight: 600; }
+    .tl-variant.primary small { color: var(--ice); }
+    .tl-variant p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .tl-variant small {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--steel);
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* ── DIVIDER BAR ── */
+    .ice-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--steel), var(--ice));
+    }
+
+    /* ── FOOTER ── */
+    .board-footer {
+      background: var(--navy);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .board-footer span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .board-footer .logo-sm {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: var(--white);
+    }
+    .board-footer .logo-sm span { color: var(--ice); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER / LOGO BLOCK -->
+<div class="brand-header">
+  <div class="label">Brand Identity · Mood Board</div>
+  <div class="wordmark">DELAR<span>VAS</span></div>
+  <div class="sub-descriptor">Industrial Refrigeration Supply</div>
+  <div class="tagline-badge">
+    <small>Primary Tagline</small>
+    <p>"Industrial Cold. Trusted Supply."</p>
+  </div>
+</div>
+<div class="ice-bar"></div>
+
+<div class="container">
+
+  <!-- COLOR PALETTE -->
+  <div class="mb-section">
+    <div class="section-title">Color Palette</div>
+    <div class="palette-row">
+      <div class="swatch-wrap">
+        <div class="swatch" style="background:#1B2B4B;"></div>
+        <div class="swatch-info">
+          <div class="name">Deep Navy</div>
+          <div class="hex">#1B2B4B</div>
+          <div class="role">Primary — authority, depth, trust</div>
+        </div>
+      </div>
+      <div class="swatch-wrap">
+        <div class="swatch" style="background:#2E6DA4;"></div>
+        <div class="swatch-info">
+          <div class="name">Steel Blue</div>
+          <div class="hex">#2E6DA4</div>
+          <div class="role">Secondary — expertise, reliability</div>
+        </div>
+      </div>
+      <div class="swatch-wrap">
+        <div class="swatch" style="background:#48CAE4;"></div>
+        <div class="swatch-info">
+          <div class="name">Ice Blue</div>
+          <div class="hex">#48CAE4</div>
+          <div class="role">Accent — cold chain, precision</div>
+        </div>
+      </div>
+      <div class="swatch-wrap">
+        <div class="swatch" style="background:#90E0EF;"></div>
+        <div class="swatch-info">
+          <div class="name">Light Ice</div>
+          <div class="hex">#90E0EF</div>
+          <div class="role">Supporting accent / highlights</div>
+        </div>
+      </div>
+      <div class="swatch-wrap">
+        <div class="swatch" style="background:#2C2C2C;"></div>
+        <div class="swatch-info">
+          <div class="name">Charcoal</div>
+          <div class="hex">#2C2C2C</div>
+          <div class="role">Body text, dark UI</div>
+        </div>
+      </div>
+      <div class="swatch-wrap">
+        <div class="swatch" style="background:#F4F6F8; border: 1px solid #DDE2E9;"></div>
+        <div class="swatch-info">
+          <div class="name">Cloud Gray</div>
+          <div class="hex">#F4F6F8</div>
+          <div class="role">Backgrounds, panels</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="mb-section">
+    <div class="section-title">Typography</div>
+    <div class="card">
+      <div class="type-label-row">
+        <div class="tl-name">Headline</div>
+        <div class="tl-spec">Montserrat Black (900) · 36–72px · Navy #1B2B4B</div>
+      </div>
+      <div class="type-label-row">
+        <div class="tl-name">Subheading</div>
+        <div class="tl-spec">Montserrat SemiBold (600) · 18–24px · Steel Blue #2E6DA4</div>
+      </div>
+      <div class="type-label-row">
+        <div class="tl-name">Body</div>
+        <div class="tl-spec">Open Sans Regular (400) · 14–16px · Charcoal #2C2C2C</div>
+      </div>
+      <div class="type-label-row" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
+        <div class="tl-name">Label / Cap</div>
+        <div class="tl-spec">Open Sans Light (300) · 10–12px · All-caps · 3–4px letter-spacing</div>
+      </div>
+
+      <div style="margin-top:28px; border-top: 1px solid #EEF1F5; padding-top: 28px;">
+        <div class="type-demo">
+          <div class="sample-headline">Global Leaders in<br/>Industrial Refrigeration</div>
+          <div class="sample-sub">Screw Compressors · Evaporative Condensers · Plate Freezers</div>
+          <div class="sample-body">DELARVAS maintains one of the largest inventories of used, remanufactured, and surplus new industrial refrigeration equipment in North America — available for immediate shipment worldwide.</div>
+          <div class="sample-label">Available · Domestic &amp; International</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRAND VOICE & TONE -->
+  <div class="mb-section">
+    <div class="section-title">Brand Voice &amp; Tone</div>
+    <div class="grid-3">
+      <div class="voice-card">
+        <div class="icon">🏭</div>
+        <h4>Expert</h4>
+        <p>150+ screw compressor packages. Decades in the field. We speak the language of the industry — no guesswork, no fluff.</p>
+      </div>
+      <div class="voice-card">
+        <div class="icon">🌐</div>
+        <h4>Global &amp; Dependable</h4>
+        <p>Serving domestic contractors and international buyers alike. Our word is our bond — what you order is what ships.</p>
+      </div>
+      <div class="voice-card">
+        <div class="icon">⚙️</div>
+        <h4>Direct &amp; Precise</h4>
+        <p>Industrial buyers value facts, not filler. We lead with specs, availability, and price — saving everyone's time.</p>
+      </div>
+    </div>
+    <div style="margin-top: 20px;">
+      <div class="card">
+        <div class="section-title" style="margin-bottom:14px;">Tone Keywords</div>
+        <div class="tag-row">
+          <span class="tag tag-navy">Reliable</span>
+          <span class="tag tag-navy">Experienced</span>
+          <span class="tag tag-steel">Industrial</span>
+          <span class="tag tag-steel">Precise</span>
+          <span class="tag tag-ice">Cold Chain</span>
+          <span class="tag tag-ice">Global</span>
+          <span class="tag tag-outline">No-Nonsense</span>
+          <span class="tag tag-outline">Responsive</span>
+          <span class="tag tag-outline">Well-Stocked</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAGLINE VARIANTS -->
+  <div class="mb-section">
+    <div class="section-title">Tagline Options</div>
+    <div class="tl-variants">
+      <div class="tl-variant primary">
+        <small>★ Recommended Primary</small>
+        <p>"Industrial Cold. Trusted Supply."</p>
+      </div>
+      <div class="tl-variant">
+        <small>Alternative · Global Focus</small>
+        <p>"The World's Industrial Refrigeration Source."</p>
+      </div>
+      <div class="tl-variant">
+        <small>Alternative · Inventory Strength</small>
+        <p>"In Stock. Ready to Ship. Ready to Perform."</p>
+      </div>
+      <div class="tl-variant">
+        <small>Alternative · Concise</small>
+        <p>"Cold Equipment. Real Inventory."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAMPLE USAGE -->
+  <div class="mb-section">
+    <div class="section-title">Sample Brand Applications</div>
+    <div class="grid-2">
+      <div class="sample-card">
+        <div class="eyebrow">Used &amp; Remanufactured</div>
+        <h3>150+ Screw Compressor Packages. Ready to Ship.</h3>
+        <p>From 50HP to 1500HP, DELARVAS maintains the largest field-ready inventory of industrial screw compressor packages in the U.S. — all tested, documented, and available for immediate sale.</p>
+        <a href="#" class="sample-btn btn-ice">View Inventory</a>
+        <a href="#" class="sample-btn btn-outline-white">Contact Us</a>
+      </div>
+      <div class="sample-light">
+        <div class="eyebrow">Surplus New · Unused</div>
+        <h3>New Old-Stock Equipment for Critical Cold Chain Projects.</h3>
+        <p>When lead times matter, DELARVAS delivers. Our surplus new equipment gives contractors access to factory-fresh refrigeration components — without the wait.</p>
+        <a href="#" class="sample-btn btn-navy">Browse Surplus New</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DO / DON'T -->
+  <div class="mb-section">
+    <div class="section-title">Brand Do's &amp; Don'ts</div>
+    <div class="grid-2">
+      <div class="card" style="border-top: 3px solid #22C55E;">
+        <div style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; color:#22C55E; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;">✓ Do</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="font-size:13px; color:var(--charcoal); padding-left:14px; border-left:2px solid #48CAE4;">Use Deep Navy and Ice Blue as the primary color combination</li>
+          <li style="font-size:13px; color:var(--charcoal); padding-left:14px; border-left:2px solid #48CAE4;">Lead with inventory specifics (quantity, model, condition)</li>
+          <li style="font-size:13px; color:var(--charcoal); padding-left:14px; border-left:2px solid #48CAE4;">Maintain wide letter-spacing on DELARVAS wordmark</li>
+          <li style="font-size:13px; color:var(--charcoal); padding-left:14px; border-left:2px solid #48CAE4;">Use Montserrat for all headings and brand touchpoints</li>
+          <li style="font-size:13px; color:var(--charcoal); padding-left:14px; border-left:2px solid #48CAE4;">Write in a direct, factual, confident tone</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top: 3px solid #EF4444;">
+        <div style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; color:#EF4444; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;">✗ Don't</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="font-size:13px; color:var(--charcoal); padding-left:14px; border-left:2px solid #EF4444;">Use warm colors (orange, red, yellow) as primary palette</li>
+          <li style="font-size:13px; color:var(--charcoal); padding-left:14px; border-left:2px solid #EF4444;">Use lowercase "delarvas" — always all-caps</li>
+          <li style="font-size:13px; color:var(--charcoal); padding-left:14px; border-left:2px solid #EF4444;">Use casual or overly promotional language</li>
+          <li style="font-size:13px; color:var(--charcoal); padding-left:14px; border-left:2px solid #EF4444;">Stretch or distort the wordmark</li>
+          <li style="font-size:13px; color:var(--charcoal); padding-left:14px; border-left:2px solid #EF4444;">Place the wordmark on busy backgrounds without contrast</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ice-bar"></div>
+<div class="board-footer">
+  <span>Brand Mood Board · March 2026</span>
+  <div class="logo-sm">DELAR<span>VAS</span></div>
+  <span>Confidential · Internal Use</span>
+</div>
+
+</body>
+</html>

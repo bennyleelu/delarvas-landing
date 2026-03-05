@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DELARVAS — Industrial Refrigeration Supply</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #1B2B4B;
+      --navy-deep: #111d33;
+      --steel:     #2E6DA4;
+      --ice:       #48CAE4;
+      --ice-dim:   rgba(72,202,228,0.12);
+      --charcoal:  #2C2C2C;
+      --gray:      #6B7280;
+      --light:     #F4F6F8;
+      --white:     #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--white);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAVBAR ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(17, 29, 51, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(72,202,228,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: 6px;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--ice); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ice); }
+
+    .nav-cta {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 9px 22px;
+      background: var(--ice);
+      color: var(--navy);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy-deep);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle grid texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(72,202,228,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(72,202,228,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* Ice glow top-right */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(72,202,228,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ice);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(56px, 8vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -1px;
+      color: var(--white);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--ice);
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.60);
+      max-width: 560px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+
+    .btn-primary {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      background: var(--ice);
+      color: var(--navy);
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-ghost {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--ice); color: var(--ice); }
+
+    /* ── STATS BAR ───────────────────────────────────────── */
+    .stats-bar {
+      background: var(--navy);
+      border-top: 1px solid rgba(72,202,228,0.2);
+      border-bottom: 1px solid rgba(72,202,228,0.2);
+    }
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat {
+      padding: 36px 32px;
+      border-right: 1px solid rgba(72,202,228,0.12);
+      text-align: center;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 44px;
+      color: var(--ice);
+      letter-spacing: -1px;
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ── SECTIONS ────────────────────────────────────────── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 96px 48px;
+    }
+
+    .section-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 4vw, 48px);
+      text-transform: uppercase;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 56px;
+    }
+
+    /* ── EQUIPMENT GRID ──────────────────────────────────── */
+    .eq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: #e2e8f0;
+    }
+
+    .eq-card {
+      background: var(--white);
+      padding: 36px 32px;
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .eq-card:hover {
+      background: var(--navy);
+    }
+    .eq-card:hover .eq-name { color: var(--white); }
+    .eq-card:hover .eq-desc { color: rgba(255,255,255,0.55); }
+    .eq-card:hover .eq-icon { color: var(--ice); }
+    .eq-card:hover .eq-tag { background: rgba(72,202,228,0.15); color: var(--ice); }
+
+    .eq-icon {
+      font-size: 28px;
+      color: var(--steel);
+      margin-bottom: 16px;
+      display: block;
+      transition: color 0.25s;
+    }
+    .eq-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      margin-bottom: 8px;
+      transition: color 0.25s;
+    }
+    .eq-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      transition: color 0.25s;
+    }
+    .eq-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--light);
+      color: var(--steel);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    /* ── WHY SECTION ─────────────────────────────────────── */
+    .why-bg {
+      background: var(--light);
+      border-top: 1px solid #dde2e9;
+      border-bottom: 1px solid #dde2e9;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+
+    .why-item {}
+    .why-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: var(--ice);
+      background: var(--navy);
+      display: inline-block;
+      padding: 3px 10px;
+      margin-bottom: 20px;
+    }
+    .why-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .why-body {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── CTA SECTION ─────────────────────────────────────── */
+    .cta-section {
+      background: var(--navy);
+      padding: 96px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(72,202,228,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section .section-label { color: rgba(72,202,228,0.7); }
+    .cta-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(36px, 5vw, 60px);
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .cta-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 44px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+      position: relative;
+    }
+    .cta-contact {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 56px;
+      position: relative;
+    }
+    .contact-item {}
+    .contact-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 6px;
+    }
+    .contact-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .contact-val a { color: var(--ice); text-decoration: none; }
+    .contact-val a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--navy-deep);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(72,202,228,0.1);
+    }
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 5px;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--ice); }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+    }
+    .footer-sub {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ── ICE RULE ─────────────────────────────────────────── */
+    .ice-rule {
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy), var(--steel) 40%, var(--ice));
+    }
+
+    /* ── ANIMATIONS ──────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll fade-in */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 64px; }
+      .section { padding: 64px 24px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat { border-right: none; border-bottom: 1px solid rgba(72,202,228,0.12); }
+      .eq-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr; gap: 36px; }
+      .cta-section { padding: 64px 24px; }
+      .cta-contact { flex-direction: column; gap: 28px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .eq-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">DELAR<span>VAS</span></a>
+    <ul class="nav-links">
+      <li><a href="#inventory">Inventory</a></li>
+      <li><a href="#why">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Industrial Refrigeration Supply — Domestic &amp; International</p>
+      <h1 class="hero-title">
+        Industrial Cold.<br>
+        <em>Trusted Supply.</em>
+      </h1>
+      <p class="hero-desc">
+        One of North America's largest inventories of used, remanufactured, and surplus new industrial refrigeration equipment — available for immediate sale to contractors and end users worldwide.
+      </p>
+      <div class="hero-actions">
+        <a href="#inventory" class="btn-primary">Browse Equipment</a>
+        <a href="#contact" class="btn-ghost">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ice-rule"></div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat reveal">
+        <span class="stat-num">150+</span>
+        <span class="stat-label">Screw Compressor Packages</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num">60+</span>
+        <span class="stat-label">Evaporative Condensers</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num">100s</span>
+        <span class="stat-label">Evaporators &amp; Vessels</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num">Global</span>
+        <span class="stat-label">Domestic &amp; International</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EQUIPMENT INVENTORY -->
+  <section id="inventory">
+    <div class="section">
+      <p class="section-label reveal">Equipment Inventory</p>
+      <h2 class="section-title reveal">What We Carry</h2>
+      <p class="section-sub reveal">Used, remanufactured, and surplus new-unused equipment — all inventoried and available for immediate resale.</p>
+    </div>
+    <div class="eq-grid">
+      <div class="eq-card reveal">
+        <span class="eq-icon">⚙️</span>
+        <div class="eq-name">Screw Compressor Packages</div>
+        <p class="eq-desc">Over 150 packages in stock. Single- and two-stage configurations across a wide HP range, ready for industrial ammonia and halocarbon systems.</p>
+        <span class="eq-tag">150+ Units</span>
+      </div>
+      <div class="eq-card reveal">
+        <span class="eq-icon">💧</span>
+        <div class="eq-name">Evaporative Condensers</div>
+        <p class="eq-desc">60+ evaporative condensers available. Multiple tonnage ranges and manufacturers — inspected and documented for resale.</p>
+        <span class="eq-tag">60+ Units</span>
+      </div>
+      <div class="eq-card reveal">
+        <span class="eq-icon">❄️</span>
+        <div class="eq-name">Evaporators</div>
+        <p class="eq-desc">Hundreds of industrial evaporators available across unit cooler, penthouse, and ceiling-hung configurations for cold storage applications.</p>
+        <span class="eq-tag">In Stock</span>
+      </div>
+      <div class="eq-card reveal">
+        <span class="eq-icon">🔩</span>
+        <div class="eq-name">Pressure Vessels</div>
+        <p class="eq-desc">Receivers, accumulators, intercoolers, and separators available in a range of sizes for industrial refrigeration systems.</p>
+        <span class="eq-tag">Multiple Sizes</span>
+      </div>
+      <div class="eq-card reveal">
+        <span class="eq-icon">🏭</span>
+        <div class="eq-name">Spirals, Tunnels &amp; IQF</div>
+        <p class="eq-desc">Industrial freezing systems including spiral freezers, tunnel freezers, and IQF equipment for food processing applications.</p>
+        <span class="eq-tag">Available Now</span>
+      </div>
+      <div class="eq-card reveal">
+        <span class="eq-icon">🧊</span>
+        <div class="eq-name">Ice Makers &amp; Plate Freezers</div>
+        <p class="eq-desc">Commercial and industrial ice makers alongside plate freezers for fish, seafood, and food processing operations.</p>
+        <span class="eq-tag">In Stock</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY DELARVAS -->
+  <div class="why-bg" id="why">
+    <div class="section">
+      <p class="section-label reveal">Why DELARVAS</p>
+      <h2 class="section-title reveal">Built on Inventory.<br>Backed by Experience.</h2>
+      <p class="section-sub reveal">We supply refrigeration contractors and end users who need equipment now — not in six months.</p>
+      <div class="why-grid">
+        <div class="why-item reveal">
+          <div class="why-num">01</div>
+          <div class="why-heading">The Largest Field-Ready Inventory</div>
+          <p class="why-body">150+ screw compressor packages, 60+ evaporative condensers, and hundreds of additional pieces — all physically inventoried, documented, and available for immediate purchase. No waiting on manufacturing lead times.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-num">02</div>
+          <div class="why-heading">Used, Remanufactured &amp; Surplus New</div>
+          <p class="why-body">We carry all three conditions: inspected used equipment, fully remanufactured units, and surplus new-unused stock — giving buyers the flexibility to match condition to project budget and schedule.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-num">03</div>
+          <div class="why-heading">Domestic &amp; International</div>
+          <p class="why-body">We serve refrigeration contractors and end users across the U.S. and internationally. Whether you're sourcing a single package or outfitting an entire plant, DELARVAS delivers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA / CONTACT -->
+  <div class="cta-section" id="contact">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="cta-title">Ready to Source Equipment?</h2>
+    <p class="cta-sub">Tell us what you need. Our team responds quickly with availability, specs, and pricing — no runaround.</p>
+    <div style="position:relative;">
+      <a href="mailto:info@delarvas.com" class="btn-primary">Email Us →</a>
+    </div>
+    <div class="cta-contact">
+      <div class="contact-item">
+        <div class="contact-label">Email</div>
+        <div class="contact-val"><a href="mailto:info@delarvas.com">info@delarvas.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Serving</div>
+        <div class="contact-val">Domestic &amp; International</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Inventory</div>
+        <div class="contact-val">Available Immediately</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ice-rule"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">DELAR<span>VAS</span></div>
+    <div class="footer-copy">&copy; 2026 DELARVAS. All rights reserved.</div>
+    <div class="footer-sub">Industrial Refrigeration Supply</div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger siblings
+          const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
